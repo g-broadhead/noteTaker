@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use(require('./routes'))
+app.use(require('./routes/noteRoutes.js'))
 
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'notes.html'))
@@ -16,4 +16,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-require('./db').connect(() => app.listen(3000))
+app.listen(3000)
